@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Gunting Kertas Batu</title>
+</head>
+
+<body>
+    <div class="p-5 container text-center">
+        <h1>Pilih salah satu yuk untuk mulai bermain</h1>
+        <button id='gunting'>gunting</button>
+        <button id='kertas'>kertas</button>
+        <button id='batu'>batu</button>
+        <h1 id='decision'>Result</h1>
+
+        <script>
+            $("#gunting").on('click', function () {
+                var result = compare('gunting', computerChoice());
+                $("#decision").html(result);
+            });
+
+            $('#batu').on('click', function () {
+                var result = compare('batu', computerChoice());
+                $("#decision").html(result);
+            });
+
+            $('#kertas').on('click', function () {
+                var result = compare('kertas', computerChoice());
+                $("#decision").html(result);
+            });
+
+
+            var compare = function (me, opponent) {
+                if (me === 'batu') {
+
+                    if (opponent === 'batu') {
+                        return 'Seri';
+                    } else if (opponent === 'kertas') {
+                        return 'Yaah batu kamu kalah sama kertas';
+                    } else if (opponent === 'gunting') {
+                        return 'Keren batu kamu mengalahkan gunting!';
+                    }
+
+                } else if (me === 'kertas') {
+
+                    if (opponent === 'kertas') {
+                        return 'Seri';
+                    } else if (opponent === 'batu') {
+                        return 'Wow kertas kamu mengalahkan batu!';
+                    } else if (opponent === 'gunting') {
+                        return 'Waduh kertas kamu dikalahkan oleh gunting';
+                    }
+                } else if (me === 'gunting') {
+
+                    if (opponent === 'gunting') {
+                        return 'Seri';
+                    } else if (opponent === 'kertas') {
+                        return 'Gunting kamu mengalahkan kertas!';
+                    } else if (opponent === 'batu') {
+                        return 'Oh tidak gunting kamu dikalahkan oleh batu';
+                    }
+                } else {
+                    return "That doesn't make any sense!"
+                }
+            };
+            var computerChoice = function () {
+                var random = Math.random();
+                if (random < 0.333) {
+                    return 'batu';
+                } else if (random < 0.67777) {
+                    return 'kertas';
+                } else {
+                    return 'gunting';
+                }
+            };
+        </script>
+    </div>
+</body>
+
+</html>
